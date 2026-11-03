@@ -86,22 +86,35 @@ Procedimiento. Fijamos los parámetros usando exclusivamente los 14 casos de ent
 | Sensibilidad | <100> | <100> |
 | Especificidad | <100> | <100> |
 
-**Entrenamiento contra prueba.** <¿Hay diferencia? ¿Por qué? ¿Sobreajuste o generalización?>
+Control de predicción. En la salida neta final, el caso 5 tiene n = −0,01299 y se clasifica NO (real NO); el caso 9 tiene n = 0,20791 y se clasifica SÍ (real SÍ); el caso 16, que es de prueba y no participó del ajuste, tiene n = 0,05918 y se clasifica SÍ (real SÍ). El cuaderno muestra el detalle de los 20 casos y verifica automáticamente cada matriz.
+
+**Entrenamiento contra prueba.** <En esta ficha inventada las métricas resultaron iguales (100 %). Eso no prueba ausencia de sobreajuste ni garantía de generalización: solo existen dos positivos en entrenamiento y un positivo en prueba; con seis ejemplos de prueba, un error ya cambiaría la exactitud en 16,67 puntos porcentuales. Un porcentaje perfecto puede ser matemáticamente válido, pero debe contextualizarse con la línea base, cantidad de casos, posibles sesgos y evaluación en datos no vistos. El hecho de que el modelo acierte el caso 16 (positivo, estreno=0) muestra que no depende exclusivamente de la condición de estreno, sin demostrar validez general para todos los usuarios.>
 
 ## 4. El error más caro
 
-<¿Es peor el falso positivo o el falso negativo en su problema? ¿Por qué, según la ficha? ¿Qué cambiaron en el sistema para cometer menos ese error?>
+<En M29 consideramos prioritario reducir los falsos positivos. Según la ficha, un FP significa mostrar con confianza una recomendación que no gusta y deteriorar la confianza del usuario; un FN significa ocultar un contenido que sí habría disfrutado, perdiendo una oportunidad. Ambos importan y la ficha no proporciona un costo monetario para calcularlos; elegimos priorizar FP por su impacto en la confianza, vigilando la sensibilidad para no volver al sistema excesivamente conservador.>
+Qué cambiamos realmente. Antes del entrenamiento, con pesos iniciales (1; 0,10; 0,05) y sesgo −0,75, el modelo cometía 3 falsos positivos en entrenamiento (casos 5, 6 y 10), con VP=2, FN=0, FP=3, VN=9. Al corregir errores con la regla supervisada del perceptrón, los pesos pasaron a (0,9785; 0,0775; 0,05) y el sesgo a −0,78, y los FP de entrenamiento bajaron de 3 a 0. En la evaluación final hubo 0 FP en prueba. No modificamos el modelo después de conocer las etiquetas de prueba. Esta mejora se observa en la muestra sintética y no garantiza que no existan FP en producción.
 
 ## 5. ¿Comparado contra qué?
 
-**Línea base trivial.** <Qué resultado saca un sistema que responde siempre lo mismo, y cómo se compara el suyo.>
+
+**Línea base trivial.** <Comparamos contra un clasificador que siempre responde NO, adecuado como referencia porque la clase negativa es mayoritaria en los datos. No es una recomendación para usarlo en la plataforma, sino un control necesario antes de celebrar una exactitud alta.
+Medida de la línea base «siempre NO»	Entrenamiento	Prueba
+VP / FN / FP / VN	0 / 2 / 0 / 12	0 / 1 / 0 / 5
+Exactitud	12/14 = 85,71 %	5/6 = 83,33 %
+Sensibilidad	0 %	0 %
+Especificidad	100 %	100 %
+Precisión	No definida (0/0)	No definida (0/0)
+
+
+Comparación: nuestro perceptrón alcanza 100 % de exactitud en ambos conjuntos y detecta los casos positivos; la línea base acierta muchos NO, pero no detecta ningún SÍ. Por ello una exactitud aparentemente elevada (85,71 % en entrenamiento) no basta para juzgar la utilidad de una IA. No asignamos artificialmente precisión cero a una división 0/0.>
 
 | Checklist (Clase 6) | Respuesta |
 |---|---|
-| ¿Qué datos? | <> |
-| ¿Qué métrica? | <> |
-| ¿Comparado contra qué? | <> |
-| ¿Quién lo midió? | <> |
+| ¿Qué datos? | <20 ejemplos sintéticos de la ficha M29; 14 de entrenamiento y 6 de prueba con la división fija. Tres entradas conocidas al decidir; resultado_real es la etiqueta para aprender y medir.> |
+| ¿Qué métrica? | <	Principal: precisión por el costo de FP; acompañada de sensibilidad, especificidad y exactitud, con matrices que cierran.> |
+| ¿Comparado contra qué? | <Clasificador trivial «siempre NO» y comparación explícita entre entrenamiento y prueba.> |
+| ¿Quién lo midió? | <	Cálculos reproducibles implementados con asistencia de ChatGPT; las integrantes deben ejecutar y verificar el cuaderno y responder por las conclusiones. El bot es un evaluador adicional, no la fuente de las etiquetas. |
 
 ## 6. Riesgo: el camino completo
 
