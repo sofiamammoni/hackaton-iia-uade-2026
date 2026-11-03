@@ -13,9 +13,9 @@
 
 | PEAS | Su sistema |
 |---|---|
-| Medida de rendimiento | <cómo se sabe si decidió bien> |
-| Entorno | <dónde y con qué decide> |
-| Actuadores | <qué hace con la decisión> |
+| Medida de rendimiento (P)| Identificar correctamente recomendaciones que recibirían pulgar arriba. Priorizamos la precisión porque un falso positivo perjudica la confianza del usuario. También medimos sensibilidad, especificidad y exactitud.|
+| Entorno | Plataforma de streaming con usuarios, catálogo y títulos candidatos a recomendar. Cada decisión considera la relación usuario–título antes de conocer su reacción.|
+| Actuadores | El prototipo emite una decisión binaria: SÍ (considerar/priorizar el título) o NO (no priorizarlo). No afirmamos que el prototipo ya modifique una plataforma real.|
 | Sensores | <qué datos recibe> |
 
 **Objetivo y métrica.** <Qué es lo que de verdad importa en su problema y con qué métrica lo van a medir. ¿Son lo mismo?>
