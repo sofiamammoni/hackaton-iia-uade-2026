@@ -5,7 +5,7 @@
 **Integrantes:** Sol Cubas · Sofia Mammoni  
 **IA declarada:** ChatGPT  
 **Pista:** Neurona (perceptrón de tres entradas)  
-**Publicación en LinkedIn:** Pendiente de incorporar el enlace
+**Publicación en LinkedIn:** https://lnkd.in/p/dMw_Tj_P
 
 ---
 
