@@ -16,9 +16,9 @@
 | Medida de rendimiento (P)| Identificar correctamente recomendaciones que recibirían pulgar arriba. Priorizamos la precisión porque un falso positivo perjudica la confianza del usuario. También medimos sensibilidad, especificidad y exactitud.|
 | Entorno | Plataforma de streaming con usuarios, catálogo y títulos candidatos a recomendar. Cada decisión considera la relación usuario–título antes de conocer su reacción.|
 | Actuadores | El prototipo emite una decisión binaria: SÍ (considerar/priorizar el título) o NO (no priorizarlo). No afirmamos que el prototipo ya modifique una plataforma real.|
-| Sensores | <qué datos recibe> |
+| Sensores | Coincidencia con el historial (0–1), popularidad del título (percentil 0–100) y condición de estreno (0/1). Las tres características están disponibles antes de recomendar.|
 
-**Objetivo y métrica.** <Qué es lo que de verdad importa en su problema y con qué métrica lo van a medir. ¿Son lo mismo?>
+**Objetivo y métrica.** El objetivo real es mejorar la pertinencia de las recomendaciones para el usuario, anticipando qué títulos recibirían pulgar arriba y evitando recomendaciones inadecuadas. No buscamos maximizar clics, popularidad ni cantidad de títulos mostrados. Nuestra métrica principal es la precisión Verdadero positivo / Verdadero positivo + Falso positivo 
 
 ## 2. El sistema
 
