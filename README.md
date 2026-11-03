@@ -1,17 +1,15 @@
-# <Código> · <Título de su problemática>
+# M29 · ¿Le va a gustar esta recomendación?
 
-> **Hackatón IIA · UADE · 3.4.257.** Este README es la plantilla del grupo. En su fork, reemplacen todo lo que está entre `< >` y borren esta nota. Las bases están en `BASES.md` y su ficha en `problematicas/`.
-
-**Integrantes:** <nombre y apellido> · <nombre y apellido>
-**IA declarada:** <la del grupo desde la Clase 1>
-**Pista:** <Neurona / Reglas / Agente>
+**Integrantes:** Sol Cubas · Sofia Mammoni
+**IA declarada:** ChatGPT
+**Pista:** Neurona
 **Publicación en LinkedIn:** <link>
 
 ---
 
 ## 1. Formulación y PEAS
 
-**La pregunta.** <Para cada caso, ¿…? SÍ significa: …>
+**La pregunta.** Para cada recomendación de contenido en una plataforma de streaming, ¿el usuario le dará pulgar arriba?
 
 | PEAS | Su sistema |
 |---|---|
